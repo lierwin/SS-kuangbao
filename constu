@@ -1,0 +1,16 @@
+// 1. 这里填入你想用的新 UUID (去在线 UUID 生成网站生成一个)
+const myUUID = "550e8400-e29b-41d4-a716-446655440000"; 
+
+// 2. 运行这段代码将 UUID 转换为代码需要的数组格式
+const parseUUID = (uuid) => {
+    const hex = uuid.replace(/-/g, ''); // 去掉横杠
+    const bytes = new Uint8Array(16);
+    for (let i = 0; i < 16; i++) {
+        bytes[i] = parseInt(hex.substr(i * 2, 2), 16);
+    }
+    return bytes;
+};
+
+const resultArray = parseUUID(myUUID);
+console.log(`请将代码中的 const U = ... 替换为:`);
+console.log(`const U = new Uint8Array([${resultArray.join(', ')}]);`);
